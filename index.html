@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List - GroceryGo</title>
+    <style>
+        /* General page settings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Page settings */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #FF6347; /* Tomato Red */
+            margin-bottom: 20px;
+        }
+
+        /* Category Headers */
+        .category {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF6347; /* Tomato Red */
+            margin: 20px 0 10px 0;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        /* Shopping List */
+        .shopping-list {
+            width: 100%;
+            max-width: 600px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        /* Item names */
+        .item-name {
+            font-size: 16px;
+            flex: 1;
+            padding-left: 10px;
+        }
+
+        /* Checkboxes */
+        .checkbox {
+            cursor: pointer;
+            background-color: #FFFFFF;
+            border: 2px solid #4CAF50; /* Green */
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .checkbox.checked {
+            background-color: #4CAF50; /* Green */
+        }
+
+        /* Edit and Delete buttons */
+        .edit-btn, .delete-btn {
+            background-color: #FF6347; /* Tomato Red */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        .edit-btn:hover, .delete-btn:hover {
+            background-color: #FF4500; /* Dark Red on hover */
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .list-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .checkbox {
+                margin-bottom: 10px;
+            }
+
+            .edit-btn, .delete-btn {
+                width: 100%;
+                padding: 8px;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Shopping List - GroceryGo</h1>
+
+    <!-- Produce Category -->
+    <div class="category">Produce</div>
+    <ul class="shopping-list">
+        <li class="list-item">
+            <div class="checkbox"></div>
+            <span class="item-name">Apple</span>
+            <button class="edit-btn" onclick="editItem(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+        </li>
+        <li class="list-item">
+            <div class="checkbox"></div>
+            <span class="item-name">Banana</span>
+            <button class="edit-btn" onclick="editItem(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+        </li>
+    </ul>
+
+    <!-- Dairy Category -->
+    <div class="category">Dairy</div>
+    <ul class="shopping-list">
+        <li class="list-item">
+            <div class="checkbox"></div>
+            <span class="item-name">Milk</span>
+            <button class="edit-btn" onclick="editItem(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+        </li>
+        <li class="list-item">
+            <div class="checkbox"></div>
+            <span class="item-name">Cheese</span>
+            <button class="edit-btn" onclick="editItem(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+        </li>
+    </ul>
+
+    <!-- Household Items Category -->
+    <div class="category">Household Items</div>
+    <ul class="shopping-list">
+        <li class="list-item">
+            <div class="checkbox"></div>
+            <span class="item-name">Toilet Paper</span>
+            <button class="edit-btn" onclick="editItem(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+        </li>
+        <li class="list-item">
+            <div class="checkbox"></div>
+            <span class="item-name">Liquid Soap</span>
+            <button class="edit-btn" onclick="editItem(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteItem(this)">Delete</button>
+        </li>
+    </ul>
+
+    <script>
+        // Toggle checkbox status
+        const checkboxes = document.querySelectorAll('.checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('click', () => {
+                checkbox.classList.toggle('checked');
+            });
+        });
+
+        // Edit item function
+        function editItem(button) {
+            const itemName = button.closest('.list-item').querySelector('.item-name');
+            const newName = prompt("Enter the new item name:", itemName.textContent);
+            if (newName) {
+                itemName.textContent = newName;
+            }
+        }
+
+        // Delete item function
+        function deleteItem(button) {
+            const item = button.closest('.list-item');
+            item.remove();
+        }
+    </script>
+
+</body>
+</html>
